@@ -13,9 +13,14 @@ Other users can join in the discussion and comment on it. The other users can li
 * Each User can:
     * Create an account
     * Update their account
-    * Create a post
-    * Like someone else's post
-    * Delete their post
-    * edit their own post
+    * Create communities
+    * Join communities
+    * edit their own communities information
+    * Create discussions
+    * Delete their discussions
+    * edit their discussions
+    * make a comment
+    * edit comment
+    * delete comment
     
 More Features will be implemented
