@@ -17,4 +17,5 @@ Other users can join in the discussion and comment on it. The other users can li
     * Like someone else's post
     * Delete their post
     * edit their own post
+    
 More Features will be implemented
