@@ -1,15 +1,38 @@
-from flask import render_template
-from blog import app
+from flask import render_template, redirect, url_for, flash
+from blog import app, db
+from blog.forms import RegistrationForm, LoginForm
+from blog.models import User
+
+@app.before_first_request
+def initDB(*args, **kwargs):
+    db.create_all()
 
 @app.route('/')
-@app.route('/home')
-def index():
-    return render_template('index.html', title='Homepage')
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
 
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
-    return render_template('register.html', title='Register')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        new_user = User(email = form.email.data, username = form.username.data, first_name=form.first_name.data,
+                        last_name = form.last_name.data)
+        new_user.set_password_hash(form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        flash(f'User {form.username.data} has been created!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form = form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html', title='Login')
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user.get_password_hash(form.password.data) and user:
+            flash(f'User {form.username.data} has logged in successfully')
+            return redirect(url_for('about'))
+        else:
+            flash('Either the username or password is incorrect. Please try again.')
+    return render_template('login.html', title='Login', form = form)
