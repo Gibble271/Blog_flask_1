@@ -1,4 +1,5 @@
 from flask import render_template, redirect, url_for, flash
+from flask_login import login_user, current_user, logout_user
 from blog import app, db
 from blog.forms import RegistrationForm, LoginForm
 from blog.models import User
@@ -31,8 +32,15 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user.get_password_hash(form.password.data) and user:
+            login_user(user, remember=form.remember_me.data)
             flash(f'User {form.username.data} has logged in successfully')
             return redirect(url_for('about'))
         else:
             flash('Either the username or password is incorrect. Please try again.')
     return render_template('login.html', title='Login', form = form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash(f'You have successfully logged out')
+    return redirect(url_for('about'))
