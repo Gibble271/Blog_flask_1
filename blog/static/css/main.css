@@ -1,0 +1,131 @@
+body{
+    background-color: rgb(58, 58, 58);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    padding:0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+nav {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    box-shadow: black 0px 0px 10px;
+    position: sticky;
+    width: 100%;
+    top: 0;
+}
+
+.navigation_ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navigation_li {
+    display: inline-block;
+    margin-right: 20px;
+    
+}
+
+.navigation_a {
+    text-decoration-line: none;
+    text-transform: uppercase;
+    color:black;
+    cursor: pointer;
+}
+
+.navigation_a:hover{
+    text-decoration-line: underline;
+}
+
+footer {
+    text-align: center;
+    color:gray;
+    background-color: white;
+    padding: 1px;
+    margin-top: 5px;
+    box-shadow: black 0px 0px 10px;
+    width:100%;
+}
+
+.flash-message {
+    text-align: center;
+    color: black;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    top: 0;
+    position: sticky;
+}
+
+.card {
+    margin:auto;
+    padding:10px;
+    background-color: white;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+}
+
+.card header {
+    border-bottom: solid;
+}
+
+.card form {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.form-control {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.btn {
+    background-color: #0b69dd; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: white;
+    color: #0b69dd;
+    border-color: #0b69dd;
+    border: solid;
+}
+
+.btn:active {
+    background-color: #0b69dd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.text_field{
+    border-radius: 5px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    box-shadow: #666 0px 0px 2px;
+
+}
+
+.text_field:focus{
+    border: 3px solid #555;
+    background-color: lightblue;
+}
+
+.boolean_check:hover{
+    cursor: pointer;
+
+}

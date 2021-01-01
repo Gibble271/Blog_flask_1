@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Login Page</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>{{form.username.label()}}
-            {{form.username()}}
-        </div>
-        <div>{{form.password.label()}}
-            {{form.password()}}
-        </div>
-        <div>{{form.remember_me.label()}}
-            {{form.remember_me()}} </div>
-        <div>{{form.submit()}}</div>
-    </form>
+    <div class="card">
+        <header><h2>Sign in</h2></header>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-control">{{form.username.label()}}
+                {{form.username(class="text_field")}}
+            </div>
+            <div class="form-control">{{form.password.label()}}
+                {{form.password(class="text_field")}}
+            </div>
+            <div class="form-control">{{form.remember_me.label()}}
+                {{form.remember_me(class="boolean_check")}} </div>
+            <div class="form-control"> {{form.submit(class="btn")}}</div>
+        </form>
+    </div>
+    
 {% endblock %}
 

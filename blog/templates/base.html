@@ -1,20 +1,31 @@
 <!doctype html>
-<head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <title>{{ title }}</title>
-</head>
-<nav>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <title>{{ title }}</title>
+    </head>
     
-</nav>
-<body>
-    <div class="flash-message">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-            <p> {{ message }}</p>
-            {% endfor %}
-        {% endif %}
-        {% endwith %}
-    </div>
-    {% block content %}{% endblock %}
-</body>
+    <body>
+        <nav>
+            <ul class="navigation_ul">
+                <li class="navigation_li"><a class="navigation_a" href="{{url_for('about')}}">About </a></li>
+                <li class="navigation_li"><a class="navigation_a" href="{{url_for('login')}}">Login</a></li>
+                <li class="navigation_li"><a class="navigation_a" href="{{url_for('register')}}">Register</a></li>
+                <li class="navigation_li"><a class="navigation_a" href="{{url_for('logout')}}">Logout</a></li>
+            </ul>
+        </nav>
+        
+        <div class="flash-message">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <p> {{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        {% block content %}{% endblock %}
+        <footer> <h5>Created by: Gibble271<h5></footer>
+    </body>
+    
+</html>
