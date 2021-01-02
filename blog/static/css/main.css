@@ -1,0 +1,169 @@
+.boolean_check{
+    box-shadow: #666 0px 0px 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #0b69dd; /* Green */
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.4s;
+}
+
+.btn:hover{
+    background-color: white;
+    border: solid;
+    border-color: #0b69dd;
+    color: #0b69dd;
+    
+}
+
+.btn:active {
+    background-color: #0b69dd;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+body{
+    background-color: rgb(58, 58, 58);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding:0px;
+}
+
+.card-s {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:auto;
+    padding:7px;
+    width: 50%;
+}
+
+.card-s header {
+    border-bottom: solid;
+}
+
+.card-s form {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.container {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.extra-info{
+    border-top: solid;
+    color: gray;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.extra-info div {
+    margin: 5px;
+}
+
+.extra-info div a:hover {
+    color:#0b69dd;
+    font-weight: bold;
+}
+
+.flash-message {
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.flash-message p {
+    padding: 10px;
+}
+
+.form-control {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+footer {
+    background-color: white;
+    bottom: 0;
+    box-shadow: black 0px 0px 10px;
+    color:gray;
+    width: 100%;
+}
+
+footer h5 {
+    text-align: center;
+    padding:10px;
+}
+
+nav {
+    background-color: white;
+    box-shadow: black 0px 0px 10px;
+    color: black;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.navigation_ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+}
+
+.navigation_li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.navigation_a {
+    color:black;
+    cursor: pointer;
+    text-decoration-line: none;
+    text-transform: uppercase;
+}
+
+.navigation_a:hover{
+    text-decoration-line: underline;
+}
+
+section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:auto;
+}
+
+section header {
+    border-bottom: solid;
+}
+
+section header h2 {
+    padding: 15px;
+}
+
+.text_field{
+    border-radius: 5px;
+    box-sizing: border-box;
+    box-shadow: #666 0px 0px 2px;
+    margin: 8px 0;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.text_field:focus{
+    background-color: lightblue;
+    border: 3px solid #555;
+}
