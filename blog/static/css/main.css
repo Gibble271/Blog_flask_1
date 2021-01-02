@@ -39,7 +39,7 @@ body{
     padding:0px;
 }
 
-.card {
+.card-s {
     background-color: white;
     border-radius: 10px;
     box-shadow: black 0px 0px 10px;
@@ -48,11 +48,11 @@ body{
     width: 50%;
 }
 
-.card header {
+.card-s header {
     border-bottom: solid;
 }
 
-.card form {
+.card-s form {
     margin-top: 10px;
     text-align: center;
 }
@@ -137,6 +137,21 @@ nav {
 
 .navigation_a:hover{
     text-decoration-line: underline;
+}
+
+section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:auto;
+}
+
+section header {
+    border-bottom: solid;
+}
+
+section header h2 {
+    padding: 15px;
 }
 
 .text_field{

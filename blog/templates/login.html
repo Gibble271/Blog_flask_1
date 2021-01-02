@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="card">
+    <div class="card-s">
         <header><h2>Sign in</h2></header>
         <form method="POST">
             {{ form.hidden_tag() }}
             <div class="form-control">{{form.username.label()}}
-                {{form.username(class="text_field")}}
+                {{form.username(class="text_field", placeholder="Enter Your Username Here")}}
             </div>
             <div class="form-control">{{form.password.label()}}
-                {{form.password(class="text_field")}}
+                {{form.password(class="text_field", placeholder="Enter Your Password Here")}}
             </div>
             <div class="form-control">{{form.remember_me.label()}}
                 {{form.remember_me(class="boolean_check")}} </div>
