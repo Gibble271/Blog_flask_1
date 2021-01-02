@@ -139,6 +139,21 @@ nav {
     text-decoration-line: underline;
 }
 
+section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:auto;
+}
+
+section header {
+    border-bottom: solid;
+}
+
+section header h2 {
+    padding: 15px;
+}
+
 .text_field{
     border-radius: 5px;
     box-sizing: border-box;
