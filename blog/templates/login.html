@@ -12,8 +12,14 @@
             </div>
             <div class="form-control">{{form.remember_me.label()}}
                 {{form.remember_me(class="boolean_check")}} </div>
+                
             <div class="form-control"> {{form.submit(class="btn")}}</div>
         </form>
+        <div class="extra-info">
+            <div>Don't have an account? Sign up <a href="{{url_for('register')}}">here</a>!</div>
+            <div>Forget Password? <!--add forget password url here--></div>
+        </div>
+        
     </div>
     
 {% endblock %}
