@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Login Page</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>{{form.username.label()}}
-            {{form.username()}}
+    <div class="card-s">
+        <header><h2>Sign in</h2></header>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-control">{{form.username.label()}}
+                {{form.username(class="text_field", placeholder="Enter Your Username Here")}}
+            </div>
+            <div class="form-control">{{form.password.label()}}
+                {{form.password(class="text_field", placeholder="Enter Your Password Here")}}
+            </div>
+            <div class="form-control">{{form.remember_me.label()}}
+                {{form.remember_me(class="boolean_check")}} </div>
+                
+            <div class="form-control"> {{form.submit(class="btn")}}</div>
+        </form>
+        <div class="extra-info">
+            <div>Don't have an account? Sign up <a href="{{url_for('register')}}">here</a>!</div>
+            <div>Forget Password? <!--add forget password url here--></div>
         </div>
-        <div>{{form.password.label()}}
-            {{form.password()}}
-        </div>
-        <div>{{form.remember_me.label()}}
-            {{form.remember_me()}} </div>
-        <div>{{form.submit()}}</div>
-    </form>
+        
+    </div>
+    
 {% endblock %}
 
