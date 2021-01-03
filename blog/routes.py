@@ -1,8 +1,12 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from blog import app, db
-from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm
-from blog.models import User, Community
+from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm
+from blog.models import User, Community, Discussion
+
+def saveToDatabase(newData):
+    db.session.add(newData)
+    db.session.commit()
 
 @app.before_first_request
 def initDB(*args, **kwargs):
@@ -20,11 +24,28 @@ def createCommunity():
     form = CreateCommunityForm()
     if form.validate_on_submit():
         newCommunityInfo = Community(name=form.name.data, about=form.about.data, founder_id=current_user.id)
-        db.session.add(newCommunityInfo)
-        db.session.commit()
+        saveToDatabase(newCommunityInfo)
         flash(f'You have successfully {form.name.data}')
         return redirect(url_for('about'))
     return render_template('create_Community.html', title='Create Community', form=form)
+
+@app.route('/view/community/<community_id>', methods=['GET'])
+def viewCommunity(community_id):
+    community_name= Community.query.get(community_id).name
+    discussions = Discussion.query.filter_by(community_id=community_id).all()
+    return render_template('community_Page.html', title=community_name, discussions=discussions)
+
+@login_required
+@app.route('/create/<community_id>/discussion', methods=['GET', 'POST'])
+def createDiscussion(community_id):
+    form = CreateDiscussionForm()
+    if form.validate_on_submit():
+        newDiscussion = Discussion(title=form.title.data, body=form.body.data, user_id=current_user.id,
+                                    community_id=community_id)
+        saveToDatabase(newDiscussion)
+        flash(f'You have successfully uploaded discussion {form.title.data}')
+        return redirect(url_for('about'))
+    return render_template('create_Discussion.html', form=form, title='Create Discussion')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -53,8 +74,7 @@ def register():
         new_user = User(email = form.email.data, username = form.username.data, first_name=form.first_name.data,
                         last_name = form.last_name.data)
         new_user.set_password_hash(form.password.data)
-        db.session.add(new_user)
-        db.session.commit()
+        saveToDatabase(new_user)
         flash(f'User {form.username.data} has been created!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form = form)
