@@ -13,6 +13,8 @@ def initDB(*args, **kwargs):
 def about():
     return render_template('about.html', title='About')
 
+
+# In register, be sure to add the send email to new user for verification.
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegistrationForm()
