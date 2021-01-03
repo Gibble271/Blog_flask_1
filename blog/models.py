@@ -15,7 +15,18 @@ class Community(db.Model):
     
     #relationships
     founder_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    discussions = db.relationship('Discussion', backref='originCommunity', lazy=True)
 
+class Discussion(db.Model):
+    #variables
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    body = db.Column(db.String(120))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    #relationships
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    community_id = db.Column(db.Integer, db.ForeignKey('community.id'), nullable=False)
 
 class User(db.Model, UserMixin):
     #variables
@@ -28,7 +39,8 @@ class User(db.Model, UserMixin):
 
     #relationship
     createdCommunities = db.relationship('Community', backref='founder', lazy=True)
-
+    ownedDiscussions = db.relationship('Discussion', backref='writer', lazy=True)
+    
     #methods
     def set_password_hash(self, password):
         self.password_hash = generate_password_hash(password)

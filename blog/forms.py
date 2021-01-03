@@ -14,6 +14,11 @@ class CreateCommunityForm(FlaskForm):
         if name:
             raise ValidationError(f'The name {name.data} has already been taken. Please use a different one.')
 
+class CreateDiscussionForm(FlaskForm):
+    title = StringField('Title:', validators=[DataRequired()])
+    body = StringField('Discuss:')
+    submit = SubmitField('Create Discussion')
+
 class RegistrationForm(FlaskForm):
     email = StringField('Email:', validators=[Email(), DataRequired()])
     first_name = StringField('First Name:', validators=[DataRequired()])
