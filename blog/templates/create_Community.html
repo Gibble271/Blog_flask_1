@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %} 
+<header><h2>Create a Community</h2></header>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>{{form.name.label()}}
+        {{form.name()}}
+    </div>
+    <div>{{form.about.label()}}
+        {{form.about()}}
+    </div>
+    <div>{{form.submit()}}</div>
+</form>
+
+{% endblock %}

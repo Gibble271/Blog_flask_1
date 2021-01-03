@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, flash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from blog import app, db
-from blog.forms import RegistrationForm, LoginForm
-from blog.models import User
+from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm
+from blog.models import User, Community
 
 @app.before_first_request
 def initDB(*args, **kwargs):
@@ -11,7 +11,20 @@ def initDB(*args, **kwargs):
 @app.route('/')
 @app.route('/about')
 def about():
-    return render_template('about.html', title='About')
+    communities = Community.query.filter_by().all()
+    return render_template('about.html', title='About', communities=communities)
+
+@login_required
+@app.route('/create/community', methods=['POST', 'GET'])
+def createCommunity():
+    form = CreateCommunityForm()
+    if form.validate_on_submit():
+        newCommunityInfo = Community(name=form.name.data, about=form.about.data, founder_id=current_user.id)
+        db.session.add(newCommunityInfo)
+        db.session.commit()
+        flash(f'You have successfully {form.name.data}')
+        return redirect(url_for('about'))
+    return render_template('create_Community.html', title='Create Community', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -46,3 +59,5 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form = form)
 
+
+    

@@ -1,7 +1,18 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import  ValidationError, DataRequired, EqualTo, Length, Email
-from blog.models import User
+from blog.models import User, Community
+
+
+class CreateCommunityForm(FlaskForm):
+    name = StringField('Name of Community:', validators=[DataRequired()])
+    about = StringField('About the Community:')
+    submit = SubmitField('Create Community')
+
+    def validate_name(self, name):
+        name = Community.query.filter_by(name=name.data).first()
+        if name:
+            raise ValidationError(f'The name {name.data} has already been taken. Please use a different one.')
 
 class RegistrationForm(FlaskForm):
     email = StringField('Email:', validators=[Email(), DataRequired()])

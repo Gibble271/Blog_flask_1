@@ -3,7 +3,11 @@
 <section>
     <header><h2>Latest discussion</h2></header>
     <div>
-        <h2>no current post</h2>
+        {% for community in communities %}
+            <div>
+                {% include "community_info.html" %}
+            </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
