@@ -3,6 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from blog import app, db
 from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm
 from blog.models import User, Community, Discussion
+from sqlalchemy import desc
 
 def saveToDatabase(newData):
     db.session.add(newData)
@@ -29,11 +30,13 @@ def createCommunity():
         return redirect(url_for('about'))
     return render_template('create_Community.html', title='Create Community', form=form)
 
+#important chain method to remember.
+#Discussion.query.filter_by(community_id=community_id).order_by(Discussion.title).all()
 @app.route('/view/community/<community_id>', methods=['GET'])
 def viewCommunity(community_id):
     community_name= Community.query.get(community_id).name
-    discussions = Discussion.query.filter_by(community_id=community_id).all()
-    return render_template('community_Page.html', title=community_name, discussions=discussions)
+    discussions = Discussion.query.filter_by(community_id=community_id).order_by(Discussion.timestamp.desc()).all()
+    return render_template('community_Page.html', title=community_name, discussions=discussions, id_of_community=community_id)
 
 @login_required
 @app.route('/create/<community_id>/discussion', methods=['GET', 'POST'])
@@ -44,7 +47,7 @@ def createDiscussion(community_id):
                                     community_id=community_id)
         saveToDatabase(newDiscussion)
         flash(f'You have successfully uploaded discussion {form.title.data}')
-        return redirect(url_for('about'))
+        return redirect(url_for('viewCommunity', community_id=community_id))
     return render_template('create_Discussion.html', form=form, title='Create Discussion')
 
 @app.route('/login', methods=['GET', 'POST'])
