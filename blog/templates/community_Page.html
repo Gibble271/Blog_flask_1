@@ -3,7 +3,8 @@
     {% for discussion in discussions %}
     <div>
         <div><h2>{{discussion.title}}</h2></div>
+        
     </div>
     {% endfor %}
-
+    <div><a href="{{url_for('createDiscussion', community_id=id_of_community)}}">post</a></div>
 {% endblock %}
