@@ -30,8 +30,8 @@ def createCommunity():
         return redirect(url_for('about'))
     return render_template('create_Community.html', title='Create Community', form=form)
 
-#important chain method to remember.
-#Discussion.query.filter_by(community_id=community_id).order_by(Discussion.title).all()
+#important chain method to remember that will help with sorting.
+#Discussion.query.filter_by(community_id=community_id).order_by(Discussion.timestamp.desc()).all()
 @app.route('/view/community/<community_id>', methods=['GET'])
 def viewCommunity(community_id):
     community_name= Community.query.get(community_id).name
@@ -81,6 +81,3 @@ def register():
         flash(f'User {form.username.data} has been created!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form = form)
-
-
-    
