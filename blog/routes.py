@@ -50,6 +50,12 @@ def createDiscussion(community_id):
         return redirect(url_for('viewCommunity', community_id=community_id))
     return render_template('create_Discussion.html', form=form, title='Create Discussion')
 
+@login_required
+@app.route('/view/discussion/<discussion_id>', methods=['GET'])
+def viewDiscussion(discussion_id):
+    discussion = Discussion.query.get(discussion_id)
+    return render_template('discussion_page.html', title="View Discussion", discussion = discussion)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()

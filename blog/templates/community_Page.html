@@ -2,7 +2,7 @@
 {% block content %}
     {% for discussion in discussions %}
     <div>
-        <div><h2>{{discussion.title}}</h2></div>
+        <div><h2><a href="{{url_for('viewDiscussion', discussion_id=discussion.id)}}">{{discussion.title}}</a></h2></div>
         
     </div>
     {% endfor %}
