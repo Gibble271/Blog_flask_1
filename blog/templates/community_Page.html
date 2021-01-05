@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for discussion in discussions %}
-    <div>
-        <div><h2><a href="{{url_for('viewDiscussion', discussion_id=discussion.id)}}">{{discussion.title}}</a></h2></div>
-        
+    <div class='container'>
+        <div class="card-s"><a href="{{url_for('createDiscussion', community_id=id_of_community)}}">post</a></div>
+        {% for discussion in discussions %}
+            <div class="card-s">
+                <a href="{{url_for('viewDiscussion', discussion_id=discussion.id)}}">
+                    {% include '_discussion.html' %}
+                </a>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    <div><a href="{{url_for('createDiscussion', community_id=id_of_community)}}">post</a></div>
 {% endblock %}
