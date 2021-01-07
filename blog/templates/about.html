@@ -2,8 +2,9 @@
 {% block content %}
 <section>
     <header><h2>Latest discussion</h2></header>
-    <div>
-        <h2>no current post</h2>
-    </div>
+    {% for community in communities %}
+    <div><a href="{{url_for('viewCommunity', community_id=community.id)}}"> {{community.name}}</a></div>
+    {% endfor %}
+    
 </section>
 {% endblock %}

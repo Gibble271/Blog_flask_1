@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %} 
+
+<div class="card-s">
+    <header><h2>Create a Community</h2></header>
+    <form method="POST">
+        {{form.hidden_tag()}}
+        <div class="form-control">
+            {{form.name.label()}}
+            {{form.name(class="text_field", placeholder="Enter The Community Name Here")}}
+        </div>
+        <div class="form-control">
+            {{form.about.label()}}
+            {{form.about(class="text_field")}}
+        </div>
+        <div>{{form.submit(class="btn")}}</div>
+    </form>
+</div>
+{% endblock %}

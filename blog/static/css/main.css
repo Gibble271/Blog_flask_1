@@ -39,6 +39,18 @@ body{
     padding:0px;
 }
 
+.card-xs {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:10px;
+    padding:7px;
+    width: 15%;
+    position: relative;
+    
+    
+}
+
 .card-s {
     background-color: white;
     border-radius: 10px;
@@ -55,6 +67,19 @@ body{
 .card-s form {
     margin-top: 10px;
     text-align: center;
+}
+
+.card-m {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: black 0px 0px 10px;
+    margin:auto;
+    padding:7px;
+    width: 75%;
+}
+
+.card-m header{
+    border-bottom: solid;
 }
 
 .container {
@@ -137,6 +162,30 @@ nav {
 
 .navigation_a:hover{
     text-decoration-line: underline;
+}
+
+.post{
+    border-bottom: solid;
+    border: solid;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.post a {
+    text-decoration-line: none;
+    color: black;
+}
+
+.post:hover{
+    background-color: #0b69dd;
+}
+
+.post-title {
+    border-bottom: dotted;
+    padding:5px;
+}
+.post-content {
+    padding: 10px;
 }
 
 section {
