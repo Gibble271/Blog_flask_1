@@ -87,8 +87,6 @@ body{
     margin-top: 10px;
 }
 
-
-
 .extra-info{
     border-top: solid;
     color: gray;
@@ -168,22 +166,26 @@ nav {
 
 .post{
     border-bottom: solid;
+    border: solid;
+    border-radius: 10px;
     margin: 5px;
-    
 }
 
 .post a {
     text-decoration-line: none;
-    padding: 10px;
-}
-
-.post a header{
-    
+    color: black;
 }
 
 .post:hover{
     background-color: #0b69dd;
-    
+}
+
+.post-title {
+    border-bottom: dotted;
+    padding:5px;
+}
+.post-content {
+    padding: 10px;
 }
 
 section {
