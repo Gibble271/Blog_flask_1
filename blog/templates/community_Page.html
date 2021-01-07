@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for discussion in discussions %}
-    <div>
-        <div><h2><a href="{{url_for('viewDiscussion', discussion_id=discussion.id)}}">{{discussion.title}}</a></h2></div>
-        
+    <div class='container'>
+        <div class="card-xs">
+            <a class="btn" href="{{url_for('createDiscussion', community_id=id_of_community)}}">post</a>
+        </div>
+        <div class="card-m">
+            <header>
+                <h2>Discussions</h2>
+            </header>
+        {% for discussion in discussions %}
+                <div class="post">
+                    <!-- add the username so that they can go to the account page of the op -->
+                    <a href="{{url_for('viewDiscussion', discussion_id=discussion.id)}}">
+                        {% include '_discussion.html' %}
+                    </a>
+                </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    <div><a href="{{url_for('createDiscussion', community_id=id_of_community)}}">post</a></div>
+    </div>
 {% endblock %}
