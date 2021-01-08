@@ -1,4 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>{{discussion.title}}</h1>
+    <div class="card-m">
+        <div><h2>{{discussion.title}}</h2></div>
+        <div><p>{{discussion.body}}</p></div>
+    </div>
 {% endblock %}
