@@ -4,4 +4,14 @@
         <div><h2>{{discussion.title}}</h2></div>
         <div><p>{{discussion.body}}</p></div>
     </div>
+    <div class = "card-m">
+        <div><a href="{{url_for('createComment', discussion_id=id_of_discussion)}}">Create Comment</a></div>
+    </div>
+    <div class="card-m">
+        {% for comment in comments %}
+            <div>
+                {{comment.body}}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

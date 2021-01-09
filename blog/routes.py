@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from blog import app, db
-from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm
-from blog.models import User, Community, Discussion
+from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm, CreateCommentForm
+from blog.models import User, Community, Discussion, Comment
 from sqlalchemy import desc
 
 def saveToDatabase(newData):
@@ -18,6 +18,18 @@ def initDB(*args, **kwargs):
 def about():
     communities = Community.query.filter_by().all()
     return render_template('about.html', title='About', communities=communities)
+
+@login_required
+@app.route('/create/comment/<discussion_id>', methods=['POST', 'GET'])
+def createComment(discussion_id):
+    form = CreateCommentForm()
+    if form.validate_on_submit():
+        comment = Comment(body=form.body.data, discussion_id=discussion_id, user_id=current_user.id)
+        saveToDatabase(comment)
+        flash('You have created a comment')
+        return redirect(url_for('viewDiscussion', discussion_id=discussion_id))
+    return render_template('create_Comment.html', form=form)
+
 
 @login_required
 @app.route('/create/community', methods=['POST', 'GET'])
@@ -54,7 +66,9 @@ def createDiscussion(community_id):
 @app.route('/view/discussion/<discussion_id>', methods=['GET'])
 def viewDiscussion(discussion_id):
     discussion = Discussion.query.get(discussion_id)
-    return render_template('discussion_page.html', title="View Discussion", discussion = discussion)
+    comments = Comment.query.filter_by(discussion_id=discussion_id).order_by(Comment.timestamp).all()
+    return render_template('discussion_page.html', title="View Discussion", discussion = discussion, comments=comments,
+                            id_of_discussion=discussion_id)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-s">
+    <header><h2>Create a Comment</h2></header>
+    <form method="POST">
+        {{form.hidden_tag()}}
+        <div class="form-control">
+            {{form.body.label()}}
+            {{form.body(class="text_field", placeholder="Enter your comment Here")}}
+        </div>
+        <div>{{form.submit(class="btn")}}</div>
+    </form>
+</div>
+{% endblock %}

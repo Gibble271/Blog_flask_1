@@ -3,7 +3,9 @@ from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import  ValidationError, DataRequired, EqualTo, Length, Email
 from blog.models import User, Community
 
-
+class CreateCommentForm(FlaskForm):
+    body = StringField('Create Comment', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 class CreateCommunityForm(FlaskForm):
     name = StringField('Name of Community:', validators=[DataRequired()])
     about = StringField('About the Community:')
