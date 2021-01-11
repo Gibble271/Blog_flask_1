@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, current_user, logout_user, login_required
 from blog import app, db
-from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm, CreateCommentForm
+from blog.forms import RegistrationForm, LoginForm, CreateCommunityForm, CreateDiscussionForm, CreateCommentForm, UpdateAccountForm
 from blog.models import User, Community, Discussion, Comment
 from sqlalchemy import desc
 
@@ -18,6 +18,29 @@ def initDB(*args, **kwargs):
 def about():
     communities = Community.query.filter_by().all()
     return render_template('about.html', title='About', communities=communities)
+
+#add password change
+@login_required
+@app.route('/account/', methods=['GET', 'POST'])
+def account():
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
+        #current_user.set_password_hash(form.password.data)
+        db.session.commit()
+        flash('Your account has been updated')
+        return redirect(url_for('account'))
+    else:
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
+        #form.password.data = current_user.get_password_hash()
+    return render_template('account.html', form=form)
+
 
 @login_required
 @app.route('/create/comment/<discussion_id>', methods=['POST', 'GET'])

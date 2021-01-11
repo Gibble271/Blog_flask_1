@@ -28,7 +28,7 @@ class RegistrationForm(FlaskForm):
     username = StringField('Username:', validators=[DataRequired()])
     password = PasswordField('Password:', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password:', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Submit')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
@@ -45,3 +45,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password:', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me:')
     submit = SubmitField('Sign In')
+
+class UpdateAccountForm(FlaskForm):
+    email = StringField('Email:', validators=[Email(), DataRequired()])
+    first_name = StringField('First Name:', validators=[DataRequired()])
+    last_name = StringField('Last Name:', validators=[DataRequired()])
+    username = StringField('Username:', validators=[DataRequired()])
+    submit = SubmitField('Submit')

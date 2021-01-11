@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card-s">
+        <header><h2>Sign up</h2></header>
+        <form method="POST">
+            {{form.hidden_tag()}}
+            <div class="form-control">
+                {{form.username.label()}}
+                {{form.username(class="text_field", placeholder="Enter Your Username here")}}
+            </div>
+            <div class="form-control">
+                {{form.email.label()}}
+                {{form.email(class="text_field", placeholder="Enter Your Email Here")}}
+            </div>
+            <div class="form-control">
+                {{form.first_name.label()}}
+                {{form.first_name(class="text_field", placeholder="Enter Your First Name Here")}}
+            </div>
+            <div class="form-control">
+                {{form.last_name.label()}}
+                {{form.last_name(class="text_field", placeholder="Enter Your Last Name Here")}}
+            </div>
+            <div>{{form.submit(class="btn")}}</div>
+        </form>
+    </div>
+{% endblock %}
