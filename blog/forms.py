@@ -51,4 +51,4 @@ class UpdateAccountForm(FlaskForm):
     first_name = StringField('First Name:', validators=[DataRequired()])
     last_name = StringField('Last Name:', validators=[DataRequired()])
     username = StringField('Username:', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Update')
